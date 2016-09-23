@@ -6,8 +6,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Pegs puzzle game, ported from TI-83+</title>
-		<meta name="description" content="The game Pegs for the TI-83+ graphing calculator, ported to the browser.">
+		<title>Connect 4</title>
+		<meta name="description" content="The game Connect 4, playable in the browser.">
 		<meta name="author" content="Rory O’Kane">
 		<meta name="viewport" content="width=device-width">
 		
@@ -24,47 +24,89 @@
 		<section id="container">
 			<header>
 				<hgroup>
-					<h1>Pegs</h1>
+					<h1>Connect 4</h1>
 				</hgroup>
 			</header>
 			
-			<p>The game Pegs for the TI-83+ graphing calculator, ported to the browser.</p>
-			
-			<p><a href="http://www.detachedsolutions.com/puzzpack/pegs.php">The original Pegs</a> was part of PuzzPack by Detached Solutions, and its main developer was Fred Coughlin. This port is by <a href="http://roryokane.com/">Rory O’Kane</a>. It is <a href="https://github.com/roryokane/pegs-js">open-source</a>.</p>
+			<p>The game <a href="https://en.wikipedia.org/wiki/Connect_Four">Connect 4</a>, playable in the browser.</p>
 			
 			<section>
 				<header>
 					<h1>Play</h1>
 				</header>
-				<div class="pegs-game">
+				<div class="game">
 					<noscript>This game requires JavaScript to run.</noscript>
-					<div class="screen title-screen">
-						<img class="screen-image" src="images/screens/pegs-title.gif" alt="PEGS: A GAME OF OBJECT ELIMINATION… By Fred Coughlin. Play, Help, Exit." />
-						<div class="menu-buttons">
-							<img class="menu-button play-button" src="images/menu-buttons/play.gif" alt="Play" />
-							<img class="menu-button help-button" src="images/menu-buttons/help.gif" alt="Help" />
-							<img class="menu-button exit-button" src="images/menu-buttons/exit.gif" alt="Exit" />
-						</div>
+					<div class="menu-buttons">
+						<button>New Game</button>
 					</div>
-					<div class="screen help-screen">
-						<div class="crop-area">
-							<img class="screen-image" src="images/screens/help-screen.gif" alt="To beat each level you must destroy all of the pegs. If two like pegs are pushed into each other they disappear, except for triangles which form a solid block and plusses which allow you to choose a replacement block." />
-						</div>
-						<div class="blank-background"></div>
+					<div class="board-grid">
+						<table>
+							<tr class="buttons">
+								<td><button>1</button></td>
+								<td><button>2</button></td>
+								<td><button>3</button></td>
+								<td><button>4</button></td>
+								<td><button>5</button></td>
+								<td><button>6</button></td>
+								<td><button>7</button></td>
+							</tr>
+							<tr>
+								<td class="1-1"></td>
+								<td class="2-1"></td>
+								<td class="3-1"></td>
+								<td class="4-1"></td>
+								<td class="5-1"></td>
+								<td class="6-1"></td>
+								<td class="7-1"></td>
+							</tr>
+							<tr>
+								<td class="1-2"></td>
+								<td class="2-2"></td>
+								<td class="3-2"></td>
+								<td class="4-2"></td>
+								<td class="5-2"></td>
+								<td class="6-2"></td>
+								<td class="7-2"></td>
+							</tr>
+							<tr>
+								<td class="1-3"></td>
+								<td class="2-3"></td>
+								<td class="3-3"></td>
+								<td class="4-3"></td>
+								<td class="5-3"></td>
+								<td class="6-3"></td>
+								<td class="7-3"></td>
+							</tr>
+							<tr>
+								<td class="1-4"></td>
+								<td class="2-4"></td>
+								<td class="3-4"></td>
+								<td class="4-4"></td>
+								<td class="5-4"></td>
+								<td class="6-4"></td>
+								<td class="7-4"></td>
+							</tr>
+							<tr>
+								<td class="1-5"></td>
+								<td class="2-5"></td>
+								<td class="3-5"></td>
+								<td class="4-5"></td>
+								<td class="5-5"></td>
+								<td class="6-5"></td>
+								<td class="7-5"></td>
+							</tr>
+							<tr>
+								<td class="1-6"></td>
+								<td class="2-6"></td>
+								<td class="3-6"></td>
+								<td class="4-6"></td>
+								<td class="5-6"></td>
+								<td class="6-6"></td>
+								<td class="7-6"></td>
+							</tr>
+						</table>
 					</div>
-					<div class="screen level-screen">
-						<div class="level-grid">
-							<!-- will generate in code -->
-						</div>
-						<div class="messages">
-							<img class="message dont-match-message" src="images/messages/dont-match.gif" alt="They don't match." />
-							<img class="message you-fell-message" src="images/messages/you-fell.gif" alt="You fell and died." />
-							<img class="message beat-level-message" src="images/messages/beat-level.gif" alt="Nice Pegging!!!" />
-						</div>
-					</div>
-					<div class="screen finished-screen">
-						<img class="screen-image" src="images/screens/finished-pegs.gif" alt="CONGRATULATIONS! YOU FINISHED PEGS! YOU CAN NOW PRESS (+) AND (-) TO GOTO ANY OF THE LEVELS." />
-					</div>
+					<div class="message">Red</div>
 				</div>
 			</section>
 			
@@ -75,9 +117,7 @@
 				<ul>
 					<li>arrow keys to move or change your selection</li>
 					<li><kbd>Space</kbd> or <kbd>Enter</kbd> to confirm</li>
-					<li><kbd>Esc</kbd> to exit</li>
-					<li><kbd>R</kbd> to reset the current level</li>
-					<li>After you beat the game, <kbd>+</kbd> and <kbd>-</kbd> change levels</li>
+					<li>etc.</li>
 				</ul>
 			</section>
 		</section>

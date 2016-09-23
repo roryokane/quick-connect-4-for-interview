@@ -13,56 +13,37 @@ body
   min-width: 200px // enough space to fit the game
 
 
-.pegs-game
-  height: 128px
-  width: 192px
-  position: relative
-  background: #bbb
+$cell-size: 3em
 
-.pegs-game noscript
+.game
+  width: $cell-size*7 + 1em
+
+.game noscript
   display: block
   padding: 1em
 
-.pegs-game .screen
-  display: none
+
+.menu-buttons
+  margin-left: auto
+  margin-right: auto
 
 
-.menu-button
-  position: absolute
-  z-index: 1
-  /* positions are fractions of game-native pixel values –
-   * 96 pixels wide and 64 pixels tall
-  bottom: 3.125%
+.board-grid
+  margin-left: auto
+  margin-right: auto
+  margin-top: 1em
+  margin-bottom: 1em
 
-.play-button
-  left: 41.6666667%
+.board-grid td
+  width: $cell-size
+  height: $cell-size
+  border: 1px solid #eee
+  text-align: center
 
-.help-button
-  left: 61.45833333%
-
-.exit-button
-  left: 81.25%
-
-
-.crop-area
-  overflow: hidden
-  position: absolute
-  z-index: 1
-  top: 0
-  left: 0
-
-.blank-background
-  background: white
-  position: absolute
-  z-index: 0
-  top: 0
-  left: 0
-  bottom: 0
-  right: 0
+.board-grid .buttons td
+  border: none
+  height: 2em
 
 
 .message
-  position: absolute
-  z-index: 1
-  left: 0
-  bottom: 0
+  text-align: center
