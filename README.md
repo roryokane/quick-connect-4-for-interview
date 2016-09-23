@@ -2,6 +2,8 @@
 
 The game Connect 4, playable in the browser. Written in 3 hours on 2016-09-23 for an interview at NexHealth.
 
+The skeleton of this project was based on the code for another browser game of mine, [Pegs](https://github.com/roryokane/pegs-js).
+
 ## Building
 
 Building this project requires requires [NPM](https://www.npmjs.com/).
