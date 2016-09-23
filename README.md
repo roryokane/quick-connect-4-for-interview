@@ -4,6 +4,22 @@ The game Connect 4, [playable in the browser](https://roryokane.github.io/quick-
 
 The skeleton of this project was based on the code for another browser game of mine, [Pegs](https://github.com/roryokane/pegs-js).
 
+## Status
+
+What works:
+
+- Displaying the interface
+- Updating the interface when the game state changes
+- Dropping pieces
+    - You are prevented from dropping pieces into a full column
+- Detecting a winner
+- Starting a new game
+
+What’s missing:
+
+- Keybindings for the controls. The code is there, but it gets an error from deep inside the the Keymage library I use when it is included.
+- The game does not prevent you from playing more pieces after a winner has been detected.
+
 ## Building
 
 Building this project requires requires [NPM](https://www.npmjs.com/).
