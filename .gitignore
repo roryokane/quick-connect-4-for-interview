@@ -8,5 +8,5 @@ tmp
 # Broccoli build output when I am debugging it with `broccoli build dist`
 dist
 
-# a folder alias
-original Pegs Flash port
+# personal notes
+doc
