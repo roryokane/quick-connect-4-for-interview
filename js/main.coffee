@@ -42,7 +42,6 @@ jQuery ($) ->
 		refreshUI()
 	
 	handleColButton = (col) ->
-		console.log("handling col button", col)
 		if colHasSpace(col)
 			dropPieceInCol(col)
 		
@@ -54,7 +53,7 @@ jQuery ($) ->
 			gameState.winner = winner
 		
 		refreshUI()
-		console.log(gameState)
+		console.log("gameState", gameState)
 	
 	colHasSpace = (col) ->
 		true
@@ -104,7 +103,6 @@ jQuery ($) ->
 		for fourCoords in coordGroupsToSearch
 			gridValuesInGroup = fourCoords.map ([col, row]) ->
 				getGridColRow(col, row)
-			console.log "gridValuesInGroup", gridValuesInGroup
 			if allEqual(gridValuesInGroup)
 				sharedValue = gridValuesInGroup[0]
 				if sharedValue != 0
