@@ -38,6 +38,7 @@ jQuery ($) ->
 	startNewGame = ->
 		gameState.currentPlayer = 1
 		gameState.grid = makeEmptyGrid()
+		gameState.winner = null
 		console.log("gameState", gameState)
 		refreshUI()
 	
