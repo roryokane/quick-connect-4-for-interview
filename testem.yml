@@ -1,0 +1,11 @@
+# https://github.com/airportyh/testem
+# haven't installed testem with npm yet
+
+#"before_tests": "coffee -c *.coffee" # compile into 'tmp/code-for-testem/'
+"src_files": [
+  "js/**.coffee"
+]
+"serve_files": [
+  "tmp/code-for-testem/*.js"
+]
+"after_tests": "rm *.js"
