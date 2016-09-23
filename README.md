@@ -17,7 +17,7 @@ What works:
 
 What’s missing:
 
-- Keybindings for the controls. The code is there, but it gets an error from deep inside the the Keymage library I use when it is included.
+- Keybindings for the controls. The code to set it up is present, but it gets an error from deep inside the Keymage library when it is uncommented.
 - The game does not prevent you from playing more pieces after a winner has been detected.
 
 ## Building
