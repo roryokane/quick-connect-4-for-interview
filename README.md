@@ -22,7 +22,7 @@ What’s missing:
 
 ## Building
 
-Building this project requires requires [NPM](https://www.npmjs.com/).
+Building this project requires [NPM](https://www.npmjs.com/).
 
 * Run `make serve` to start a development server that automatically compiles files
 * Run `make build` to generate a `dist` folder containing the compiled site
