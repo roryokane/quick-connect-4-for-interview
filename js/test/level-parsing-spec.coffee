@@ -1,11 +1,10 @@
 expect = require('chai').expect
 
-levelParsing = require('../level-parsing')
-{parseLevel, TileTypes} = levelParsing
+#levelParsing = require('../level-parsing')
+#{parseLevel, TileTypes} = levelParsing
 
-describe "parseLevel", ->
-	it "can parse a simple level", ->
-		input = ["P X ", "o   "]
-		expected = [[TileTypes.Player, TileTypes.SolidBlock],
-		            [TileTypes.Circle, TileTypes.Blank]]
-		expect( parseLevel(input) ).to.eql(expected)
+describe "the test runner", ->
+	it "works", ->
+		input = "abc"
+		expected = "abcd"
+		expect( input+"d" ).to.eql(expected)
