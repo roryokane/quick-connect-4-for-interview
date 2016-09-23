@@ -8,6 +8,7 @@ jQuery ($) ->
 	gameState =
 		currentPlayer: null
 		grid: null
+		winner: null
 	
 	
 	# game data
@@ -41,19 +42,87 @@ jQuery ($) ->
 		refreshUI()
 	
 	handleColButton = (col) ->
+		console.log("handling col button", col)
 		if colHasSpace(col)
 			dropPieceInCol(col)
+		
+		winner = winningPlayer()
+		if winner == null
+			switchCurrentPlayer()
+		else
+			console.log("winner detected", winner)
+			gameState.winner = winner
+		
 		refreshUI()
+		console.log(gameState)
 	
 	colHasSpace = (col) ->
-		true # TODO
+		true
+		# lowestEmptyRowInCol() != null
 	
 	dropPieceInCol = (col) ->
-		undefined # TODO
+		row = lowestEmptyRowInCol(col)
+		playerNum = gameState.currentPlayer
+		setGridColRow(col, row, playerNum)
+		console.log("setGridColRow", col, row, playerNum)
+	
+	lowestEmptyRowInCol = (col) ->
+		# returns null if no empty row, otherwise that row number
+		for row in [numRows..1]
+			if getGridColRow(col, row) == 0
+				return row
+		return null
+	
+	winningPlayer = () ->
+		# returns null if no winner, or 1 or -1 if that player won
+		coordGroupsToSearch = []
+		# search horizontally
+		[1..numRows].forEach (row) ->
+			[1..(numCols-3)].map (col) ->
+				fourPairsOfCoords = [0...4].map (colOffset) ->
+					[col+colOffset, row]
+				coordGroupsToSearch.push fourPairsOfCoords
+		# search down and to the right
+		[1..(numRows-3)].forEach (row) ->
+			[1..(numCols-3)].map (col) ->
+				fourPairsOfCoords = [0...4].map (offset) ->
+					[col+offset, row+offset]
+				coordGroupsToSearch.push fourPairsOfCoords
+		# search vertically
+		[1..(numRows-3)].forEach (row) ->
+			[1..numCols].map (col) ->
+				fourPairsOfCoords = [0...4].map (rowOffset) ->
+					[col, row+rowOffset]
+				coordGroupsToSearch.push fourPairsOfCoords
+		# search down and to the left
+		[1..(numRows-3)].forEach (row) ->
+			[(1+3)..numCols].map (col) ->
+				fourPairsOfCoords = [0...4].map (offset) ->
+					[col-offset, row+offset]
+				coordGroupsToSearch.push fourPairsOfCoords
+		
+		for fourCoords in coordGroupsToSearch
+			gridValuesInGroup = fourCoords.map ([col, row]) ->
+				getGridColRow(col, row)
+			console.log "gridValuesInGroup", gridValuesInGroup
+			if allEqual(gridValuesInGroup)
+				sharedValue = gridValuesInGroup[0]
+				if sharedValue != 0
+					playerNum = sharedValue
+					return playerNum
+		
+		return null
 	
 	refreshUI = ->
 		refreshGridDisplay()
 		refreshMessage()
+	
+	allEqual = (values) ->
+		if values.length == 0
+			return true
+		else
+			[first, rest] = [values[0], values[1..]]
+			return _.every(rest, (val) -> val == first)
 	
 	# grid functions
 	
@@ -92,14 +161,24 @@ jQuery ($) ->
 	switchCurrentPlayer = ->
 		gameState.currentPlayer *= -1
 	
-		# message functions
+	# message functions
+	
+	playerText = (playerNum) ->
+		switch playerNum
+			when 1 then playerTexts.playerX
+			when -1 then playerTexts.playerO
+			else "error"
 	
 	messageForGameState = (gameState) ->
-		player = gameState.currentPlayer
-		playerText = switch player
-			when 1 then playerTexts.playerX
-			when -1 then playerTexts.playerY
-		return messageTexts.playerTurn(playerText)
+		text = undefined
+		if gameState.winner == null
+			player = gameState.currentPlayer
+			text = playerText(player)
+			return messageTexts.playerTurn(text)
+		else
+			player = gameState.winner
+			text = playerText(player)
+			return messageTexts.playerWins(text)
 	
 	refreshMessage = ->
 		message = messageForGameState(gameState)
@@ -128,6 +207,14 @@ jQuery ($) ->
 	
 	registerKey = (control, handler) ->
 		keymage(control, handler, {preventDefault: true})
+	
+	# register column buttons
+	for col in [1..numCols]
+		$colButton = $(".board-grid .buttons .col#{col}")
+		$colButton.on('click', inputHandlers["col#{col}"])
+	
+	# register New Game button
+	$('.menu-buttons .new-game').on('click', startNewGame)
 	
 	# commenting out keybindings because I get an error and don’t have time to debug it
 	#_(keys).each (controls, eventName) ->
